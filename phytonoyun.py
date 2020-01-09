@@ -49,6 +49,10 @@ def turnright():
 def increasespeed():
     global speed
     speed += 1
+    
+def lowerspeed():
+    global speed
+    speed -=1
 
 def isCollision(t1, t2):
     d = math.sqrt(math.pow(t1.xcor()-t2.xcor(),2) + math.pow(t1.ycor()-t2.ycor(),2))
@@ -62,17 +66,18 @@ turtle.listen()
 turtle.onkey(turnleft, "Left")
 turtle.onkey(turnright, "Right")
 turtle.onkey(increasespeed, "Up")
+turtle.onkey(lowerspeed,"Down")
 
 while True:
-    player.forward(speed)
+    oyuncu.forward(speed)
     
 
     if oyuncu.xcor() > 300 or oyuncu.xcor() < -300:
         oyuncu.right(180)
        
 
-    if player.ycor() > 300 or player.ycor() < -300:
-        player.right(180)
+    if oyuncu.ycor() > 300 or oyuncu.ycor() < -300:
+        oyuncu.right(180)
        
 
     for count in range(maxGoals):
@@ -87,7 +92,7 @@ while True:
             goals[count].right(180)
              
 
-        if isCollision(player, goals[count]):
+        if isCollision(oyuncu, goals[count]):
             goals[count].setposition(random.randint(-300, 300), random.randint(-300, 300))
             goals[count].right(random.randint(0,360))
           
@@ -96,3 +101,4 @@ while True:
 
 
 delay = raw_input("Press Enter to finish.")
+
